@@ -1,0 +1,36 @@
+{
+  "name": "plugin-panoramaFunction",
+  "version": "1.0.0",
+  "description": "panorama app",
+  "cordova": {
+    "id": "plugin-panoramaFunction",
+    "platforms": [
+      "ios",
+      "android",
+      "windows",
+      "browser"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "ecosystem:phonegap",
+    "cordova-ios",
+    "cordova-android",
+    "cordova-windows",
+    "cordova-browser",
+    "cordova:plugin"
+  ],
+  "engines": {
+    "cordovaDependencies": {
+    }
+  },
+  "author": "Adobe PhoneGap Team",
+  "license": "MIT",
+  "scripts": {
+    "test": "jasmine-node --color spec"
+  },
+  "devDependencies": {
+    "jasmine-node": "1.14.5",
+    "pluginpub": "^0.0.9"
+  }
+}

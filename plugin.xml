@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:rim="http://www.blackberry.com/ns/widgets" id="plugin-panoramafunction" version="1.0.0">
+  <name>PanoramaFunction</name>
+  <description>panorama camera</description>
+  <license>License</license>
+  <engines>
+    <engine name="cordova" version=">=7.1.0"/>
+  </engines>
+  <js-module src="www/panoramafunction.js" name="PanoramaFunction">
+    <clobbers target="cordova.plugins.panoramaFunction"/>
+  </js-module>
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="PanoramaFunction">
+        <param name="ios-package" value="PanoramaFunction"/>
+      </feature>
+    </config-file>
+    <source-file src="src/ios/PanoramaFunction.swift" />
+    <framework src="QuartzCore.framework"/>
+    <framework src="CoreLocation.framework" />
+    <framework src="CoreGraphics.framework" />
+    <framework src="CoreMedia.framework" />
+    <framework src="CoreMotion.framework" />
+    <framework src="AVfoundation.framework" />
+    <header-file src="src/ios/UINavigationControllerLandscape.h" />
+    <source-file src="src/ios/UINavigationControllerLandscape.m" />
+    <header-file src="src/ios/PLITInfoView.h" />
+    <source-file src="src/ios/PLITInfoView.m" compiler-flags="-fno-objc-arc" />
+    <header-file src="src/ios/PLITViewerVC+Controls.h" />
+    <source-file src="src/ios/PLITViewerVC+Controls.m" compiler-flags="-fno-objc-arc" />
+    <header-file src="src/ios/PLITViewerVC.h" />
+    <source-file src="src/ios/PLITViewerVC.mm" compiler-flags="-fno-objc-arc" />
+    <source-file src="src/ios/libDMD_LITE.a" />
+    <header-file src="src/ios/DMD-Bridging-Header.h" />
+    <header-file src="src/ios/DMD_LITE.h" />
+    <source-file src="src/ios/DMDAssets.bundle" />
+    <source-file src="src/ios/ViewController.swift" />
+  </platform>
+</plugin>
