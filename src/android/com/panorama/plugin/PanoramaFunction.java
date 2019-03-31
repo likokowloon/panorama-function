@@ -1,4 +1,4 @@
-package com.moduscreate.plugin;
+package com.panorama.plugin;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import org.json.JSONException;
 import android.content.Context;
 import android.widget.Toast;
-public class ModusEcho extends CordovaPlugin {
+public class PanoramaFunction extends CordovaPlugin {
   @Override
   public boolean execute(
     String action, JSONArray args, CallbackContext callbackContext
