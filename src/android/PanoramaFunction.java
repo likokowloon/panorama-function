@@ -28,7 +28,7 @@ public class PanoramaFunction extends CordovaPlugin {
     }
 
     private void openShooterActivity(Context context) {
-        Intent intent = new Intent(context, ShooterActivity.class);
+        Intent intent = new Intent(context, com.dermandar.panoramal.ShooterActivity.class);
         this.cordova.getActivity().startActivity(intent);
     }
 }
