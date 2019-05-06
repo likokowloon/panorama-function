@@ -6,12 +6,17 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.PluginResult;
+import org.apache.cordova.PluginResult.Status;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PanoramaFunction extends CordovaPlugin {
+
+    private CallbackContext callback = null;
+    public static final String EXTRA_IMAGE_PATH = "image_path";
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -21,6 +26,7 @@ public class PanoramaFunction extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Context context = cordova.getActivity().getApplicationContext();
         if(action.equals("start")) {
+            callback = callbackContext;
             this.openShooterActivity(context);
             return true;
         }
@@ -28,7 +34,18 @@ public class PanoramaFunction extends CordovaPlugin {
     }
 
     private void openShooterActivity(Context context) {
+        cordova.setActivityResultCallback(this);
         Intent intent = new Intent(context, com.dermandar.panoramal.ShooterActivity.class);
-        this.cordova.getActivity().startActivity(intent);
+        //this.cordova.getActivity().startActivity(intent);
+        cordova.startActivityForResult(this, intent, 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //Bundle extras = data.getExtras();
+        //String information = extras.getString(EXTRA_IMAGE_PATH);
+        PluginResult result = new PluginResult(PluginResult.Status.OK, data.getStringExtra(EXTRA_IMAGE_PATH));
+        result.setKeepCallback(true);
+        callback.sendPluginResult(result);
     }
 }
