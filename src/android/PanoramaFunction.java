@@ -27,25 +27,23 @@ public class PanoramaFunction extends CordovaPlugin {
         Context context = cordova.getActivity().getApplicationContext();
         if(action.equals("start")) {
             callback = callbackContext;
-            this.openShooterActivity(context);
-            return true;
-        }
-        return false;
-    }
 
-    private void openShooterActivity(Context context) {
-        cordova.setActivityResultCallback(this);
-        Intent intent = new Intent(context, com.dermandar.panoramal.ShooterActivity.class);
-        //this.cordova.getActivity().startActivity(intent);
-        cordova.startActivityForResult(this, intent, 0);
+            cordova.setActivityResultCallback(this);
+            Intent intent = new Intent(context, com.dermandar.panoramal.ShooterActivity.class);
+            cordova.getActivity().startActivityForResult(intent, 0);
+
+        }
+        PluginResult result = new PluginResult(PluginResult.Status.OK, "before onActivityResult");
+        result.setKeepCallback(true);
+
+        return true;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //Bundle extras = data.getExtras();
-        //String information = extras.getString(EXTRA_IMAGE_PATH);
         PluginResult result = new PluginResult(PluginResult.Status.OK, data.getStringExtra(EXTRA_IMAGE_PATH));
         result.setKeepCallback(true);
         callback.sendPluginResult(result);
+        return;
     }
 }
