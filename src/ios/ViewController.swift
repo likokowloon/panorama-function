@@ -8,6 +8,7 @@
 
 import UIKit
 import AssetsLibrary
+import Foundation
 
 
 class ViewController: UIViewController, MonitorDelegate, UIGestureRecognizerDelegate {
@@ -187,6 +188,11 @@ class ViewController: UIViewController, MonitorDelegate, UIGestureRecognizerDele
         library.writeImageData(toSavedPhotosAlbum: NSData(contentsOfFile: ename) as Data?, metadata: nil) { (url : URL?,error : Error?) in
             if(url != nil){
                 UIAlertView(title: nil, message: "Image saved to camera roll", delegate: nil, cancelButtonTitle: "OK").show()
+                let c = PanoramaFunction()
+                c.pictureUri = url!.absoluteString
+                
+                self.removeFromParent()
+                self.view.removeFromSuperview()
             }else if(error != nil){
                 let errorNS = error! as NSError
                 if(errorNS.code == ALAssetsLibraryAccessUserDeniedError || errorNS.code == ALAssetsLibraryAccessGloballyDeniedError){
@@ -196,7 +202,7 @@ class ViewController: UIViewController, MonitorDelegate, UIGestureRecognizerDele
             
             self.shooterView?.isHidden=false
             self.activityInd?.stopAnimating()
-            self.restart(nil)
+            //self.restart(nil)
         }
     }
     override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
